@@ -1,0 +1,9 @@
+FROM mcherryleigh/test-app-base
+EXPOSE 8080
+RUN npm install -g bower gulp
+RUN echo '{ "allow_root": true }' > /root/.bowerrc
+RUN git clone https://github.com/tastejs/todomvc.git /opt/todomvc
+WORKDIR /opt/todomvc
+RUN npm install
+RUN bower install --force
+CMD gulp serve
